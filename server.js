@@ -13,7 +13,7 @@ app.use(cors({
 // Socket.io başlatırken CORS ayarı
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "https://jonasj.vercel.app/",
         methods: ["GET", "POST"],
         credentials: true
     }
