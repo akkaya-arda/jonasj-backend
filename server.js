@@ -6,15 +6,20 @@ const { Server } = require("socket.io");
 const cors = require("cors");
 const PORT = process.env.PORT || 3001;
 
+// Herkese CORS izni, credentials ile uyumlu şekilde
 app.use(cors({
-    origin: "https://jonasj.vercel.app/",
-    credentials: true
+    origin: (origin, callback) => {
+        callback(null, true);  // Her origin'i onayla
+    },
+    credentials: true,
 }));
 
-// Socket.io başlatırken CORS ayarı
+// Socket.io CORS ayarları - Her origin'e izin ver, credentials destekli
 const io = new Server(server, {
     cors: {
-        origin: "https://jonasj.vercel.app/",
+        origin: (origin, callback) => {
+            callback(null, true);  // Her origin'i onayla
+        },
         methods: ["GET", "POST"],
         credentials: true
     }
