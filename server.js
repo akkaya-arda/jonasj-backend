@@ -81,6 +81,9 @@ io.on('connection', (socket) => {
     socket.on('peer_id', (peerId) => {
         console.log(activeClients, socket.id);
         let clientData = activeClients.get(socket.id);
+        if (!clientData) {
+            return
+        }
         clientData.peerId = peerId;
         activeClients.set(socket.id, clientData);
     })
